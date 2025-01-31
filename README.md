@@ -1,4 +1,4 @@
-# OpenAI: Curso 1
+# OpenAI: 
 
 ## ⚙️ Configuração do Ambiente
 
@@ -6,20 +6,20 @@
 
 **Windows:**
 ```bash
-python -m venv curso_1_openai
-curso_1_openai\Scripts\activate
+python -m venv .venv
+.venv\Scripts\activate
 ```
 
 **Mac/Linux:**
 ```bash
-python3 -m venv curso_1_openai
-source curso_1_openai/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
 ### Instalação das Bibliotecas
 
 ```bash
-pip install openai python-dotenv tiktoken
+pip install --no-cache-dir --upgrade -r requirements.txt
 ```
 
 
