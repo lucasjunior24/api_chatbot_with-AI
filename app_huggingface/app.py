@@ -3,10 +3,8 @@ import requests
 import json
 import pandas as pd
 from pinecone import Pinecone
-from app.config import GROQ_API_KEY, PINECONE_API, WEATHER_API_KEY
-import pypdf
-import gradio as gr
-
+from .config import GROQ_API_KEY, PINECONE_API, WEATHER_API_KEY
+# import pypdf
 # def call_groq_api(messages: list, model="groq/llama-3.3-70b-versatile"):
 #   response = completion(
 #         model=model,
@@ -292,52 +290,9 @@ def call_groq_api(messages: list[dict[str, str]], model="groq/llama-3.3-70b-vers
     
 
 
-# chat()
+chat()
 
-# query = 'o ouro ocorre em sedimentos de origem marinha?'
-def response(message, history):
-    messages = [{"role": "system", "content": """
-    Você é o Chat da Terra e do Universo e responde em português brasileiro
-    perguntas sobre a previsão do tempo na Terra e do espaço próximo à Terra, além de informações sobre terremotos.
-    """}]
-
-    # Adicionar o histórico anterior ao histórico de mensagens
-    for user_msg, bot_msg in history:
-        messages.append({"role": "user", "content": user_msg})
-        messages.append({"role": "assistant", "content": bot_msg})
-
-    # Adicionar a nova mensagem do usuário
-    messages.append({"role": "user", "content": message})
-
-    # Verificar se o tema é geologia
-    if "geologia" in message.lower():
-        resposta = info_geologia(message)
-        geologia_info = f"Informações adicionais sobre geologia: {resposta.matches[0].metadata['text']}"
-        messages.append({"role": "system", "content": geologia_info})
-
-    # Obter a resposta do modelo
-    model_response = call_groq_api(messages)
-
-    # Se a resposta for um DataFrame, convertê-la para texto
-    if isinstance(model_response, pd.DataFrame):
-        texto_corrido = ""
-        for index, row in model_response.iterrows():
-            texto_corrido += f"Evento {index + 1}: Magnitude {row['mag']}, Local {row['place']}, Tempo {row['time']}\n"
-        model_response = texto_corrido
-
-    # Retornar a resposta como string para Gradio
-    return model_response
+query = 'o ouro ocorre em sedimentos de origem marinha?'
 
 # resposta = info_geologia(query)
 # resposta.matches[0].metadata['text']
-
-
-# Interface Gradio com ChatInterface
-demo = gr.ChatInterface(
-    response,  # Função que gera a resposta
-    title='🌍☀️🌧️ Chat da Terra e do Universo',
-    textbox=gr.Textbox(placeholder="Digite sua mensagem aqui..."),
-    type='messages'
-)
-
-demo.launch(debug=True, share=True)
