@@ -28,7 +28,7 @@ O formato de saída deve ser:
 cliente - descreva o perfil do cliente em 3 palavras
 """
 
-prompt_usuario = carrega("dados\lista_de_compras_100_clientes.csv")
+prompt_usuario = carrega("teste_modelo\dados\lista_de_compras_100_clientes.csv")
 
 lista_de_tokens = codificador.encode(prompt_sistema + prompt_usuario)
 numero_de_tokens = len(lista_de_tokens)

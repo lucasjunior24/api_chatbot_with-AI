@@ -1,3 +1,13 @@
 openai==1.54.3
 python-dotenv==1.0.1
 tiktoken==0.8.0
+
+fastapi==0.109.0
+pymongo==4.6.1
+litellm
+requests
+pandas
+transformers
+numpy
+torchaudio
+uvicorn==0.26.0
