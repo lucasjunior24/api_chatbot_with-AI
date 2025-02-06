@@ -1,4 +1,4 @@
-# OpenAI: 
+# API integration with model machine learning LLAMA: 
 
 ## ⚙️ Configuração do Ambiente
 
@@ -22,4 +22,10 @@ source .venv/bin/activate
 pip install --no-cache-dir --upgrade -r requirements.txt
 ```
 
+
+### RUN PROJECT
+
+```bash
+python chat_api/debug.py 
+```
 
