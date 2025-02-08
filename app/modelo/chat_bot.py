@@ -57,5 +57,5 @@ def call_groq_api(messages, model="groq/llama-3.3-70b-versatile"):
         api_key=GROQ_API_KEY,
     )
     resposta_texto = response.choices[0].message
-    print(resposta_texto)
+    # print(resposta_texto)
     return resposta_texto.content

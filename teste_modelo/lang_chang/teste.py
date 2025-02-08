@@ -1,3 +1,5 @@
+
+
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
@@ -12,7 +14,7 @@ completion = client.chat.completions.create(
     messages=[
         {
             "role": "user",
-            "content": "oi, que dia é hoj?"
+            "content": "Write a haiku about recursion in programming."
         }
     ]
 )
