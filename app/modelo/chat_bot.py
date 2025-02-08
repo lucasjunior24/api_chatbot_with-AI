@@ -2,14 +2,21 @@ from litellm import completion
 
 from app.config import GROQ_API_KEY
 
-def chat(user_message: str):
+
+def chat(user_message: str, messages: list):
     print("Iniciando chat com o modelo. Digite 'sair' para encerrar.")
 
     # Histórico de mensagens
-    messages = [{"role": "system", "content": """
+    message_initial = [
+        {
+            "role": "system",
+            "content": """
     Você é o Chat da Terra e do Universo e responde em português brasileiro
     perguntas sobre a previsão do tempo na Terra e do espaço próximo à Terra, além de informações sobre terremotos.
-    """}]
+    """,
+        }
+    ]
+    list_message = messages if messages else message_initial
 
     while True:
         if user_message.lower() == "sair":
@@ -17,12 +24,12 @@ def chat(user_message: str):
             break
 
         # Adicionar a mensagem do usuário ao histórico
-        messages.append({"role": "user", "content": user_message})
+        list_message.append({"role": "user", "content": user_message})
         # Chamar a API com o histórico completo
-        model_response = call_groq_api(messages)
+        model_response = call_groq_api(list_message)
 
-        messages.append({"role": "assistant", "content": model_response})
-        print("Assistent: ", model_response)
+        list_message.append({"role": "assistant", "content": model_response})
+        # print("Assistent: ", model_response)
         # Adicionar a resposta do modelo ao histórico
 
         print()
@@ -46,7 +53,6 @@ def chat(user_message: str):
 #     # Obter a resposta do modelo
 #     model_response = call_groq_api(messages)
 #     return model_response
-
 
 
 def call_groq_api(messages, model="groq/llama-3.3-70b-versatile"):

@@ -12,7 +12,14 @@ class ChatController(BaseController[ChatDTO]):
 
     def add_message(self, message: str, chat_id: str | None) -> ChatDTO:
         chat_dto = self.get_by_id(id=chat_id) if chat_id else ChatDTO(user_id="lucas")
-        response_chat = chat(message)
+        messages = []
+        for m in chat_dto.messages:
+            if m.author == "agent":
+                messages.append({"role": "assistant", "content": m.message})
+            else:
+                messages.append({"role": "user", "content": m.message})
+
+        response_chat = chat(message, messages)
 
         chat_user = MessageDTO(message=message, author="user")
         chat_agent = MessageDTO(message=response_chat, author="agent")

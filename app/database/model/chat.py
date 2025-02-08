@@ -1,6 +1,5 @@
 from pydantic import Field
 
-from mongoengine import *
 
 from app.dtos.base import DTO
 from app.database.model.message import MessageDTO

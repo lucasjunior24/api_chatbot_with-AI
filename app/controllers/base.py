@@ -26,7 +26,7 @@ class BaseController[T]:
     def create(self, dto: type[DTO]):
         dto_json = dto.model_dump(exclude=["id"], mode="json")
         data = self.collection.insert_one(dto_json)
-        new_dto = self.get_by_id(id=data.inserted_id, dto=DTO)
+        new_dto = self.get_by_id(id=data.inserted_id, dto=type(dto))
         return new_dto
 
     def get_filter(self, key: str, value: str, dto: U | T | None = None) -> U | T:

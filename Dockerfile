@@ -1,5 +1,5 @@
 
-FROM python:3.10.9
+FROM python:3.13.0
 
 WORKDIR /app
 

@@ -32,6 +32,6 @@ python chat_api/debug.py
 
 ### Python Version
 
-```3.10.9```
+```3.13.0```
 
 
