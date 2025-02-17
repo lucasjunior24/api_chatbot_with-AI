@@ -3,10 +3,19 @@ from litellm import completion
 from app.config import GROQ_API_KEY
 
 
-def chat(user_message: str, messages: list):
+def chat(user_message: str, messages: list | None = None):
     print("Iniciando chat com o modelo. Digite 'sair' para encerrar.")
 
     # Histórico de mensagens
+    # message_initial = [
+    #     {
+    #         "role": "system",
+    #         "content": """
+    # Você é o Chat da Terra e do Universo e responde em português brasileiro
+    # perguntas sobre criptomodedas.
+    # """,
+    #     }
+    # ]
     message_initial = [
         {
             "role": "system",
