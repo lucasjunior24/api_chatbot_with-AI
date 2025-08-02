@@ -5,17 +5,6 @@ from app.config import GROQ_API_KEY
 
 def chat(user_message: str, messages: list | None = None):
     print("Iniciando chat com o modelo. Digite 'sair' para encerrar.")
-
-    # Histórico de mensagens
-    # message_initial = [
-    #     {
-    #         "role": "system",
-    #         "content": """
-    # Você é o Chat da Terra e do Universo e responde em português brasileiro
-    # perguntas sobre criptomodedas.
-    # """,
-    #     }
-    # ]
     message_initial = [
         {
             "role": "system",
@@ -43,25 +32,6 @@ def chat(user_message: str, messages: list | None = None):
 
         print()
         return model_response
-
-
-# def response(message, history):
-#     messages = [{"role": "system", "content": """
-#     Você é o Chat da Terra e do Universo e responde em português brasileiro
-#     perguntas sobre a previsão do tempo na Terra e do espaço próximo à Terra, além de informações sobre terremotos.
-#     """}]
-
-#     # Adicionar o histórico anterior ao histórico de mensagens
-#     for user_msg, bot_msg in history:
-#         messages.append({"role": "user", "content": user_msg})
-#         messages.append({"role": "assistant", "content": bot_msg})
-
-#     # Adicionar a nova mensagem do usuário
-#     messages.append({"role": "user", "content": message})
-
-#     # Obter a resposta do modelo
-#     model_response = call_groq_api(messages)
-#     return model_response
 
 
 def call_groq_api(messages, model="groq/llama-3.3-70b-versatile"):

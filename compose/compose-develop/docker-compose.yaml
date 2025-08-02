@@ -1,7 +1,7 @@
 services:
-  go_notify:
+  api_ai:
     build: .
-    container_name: go_notify_develop
+    container_name: api_ai_develop
     command: sh -c "uvicorn run:app --host 0.0.0.0 --port 8000"
     ports:
       - "8000:8000"

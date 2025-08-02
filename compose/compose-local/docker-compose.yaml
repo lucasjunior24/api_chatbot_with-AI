@@ -10,10 +10,10 @@ services:
       - notify-network
 
 
-  go-notify-local:
+  api_ai_local:
     restart: always
-    image: go-notify-local
-    container_name: go-notify-local
+    image: api_ai_local
+    container_name: api_ai_local
     command: sh -c "uvicorn run:app --reload --host 0.0.0.0 --port 8000"
     ports:
       - 8000:8000
