@@ -1,10 +1,3 @@
-deploy-local:
-	docker build -t api_ai_local .
-	docker-compose -f compose/compose-local/docker-compose.yaml up -d
-		
-deploy-develop:
-	docker build -t api_ai_develop .
-	docker-compose -f compose/compose-develop/docker-compose.yaml up -d
 
 test:
 	python -m pytest tests
@@ -19,5 +12,11 @@ coverage:
 	py.test app/__init__.py --cov-report xml:cov.xml --cov=app tests
 
 
-local-mongo:
-	docker-compose -f compose/compose-local/mongo.yaml up -d
+deploy-local:
+	docker-compose up --build -d
+		
+deploy-develop:
+	docker-compose up --build -d
+	
+pull-ollama:
+	docker exec -it rag-enterprise-ollama-1 ollama pull llama3
