@@ -3,7 +3,9 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-cliente = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+API_KEY = os.getenv("OPENAI_API_KEY")
+print(f"API Key: {API_KEY}")
+cliente = OpenAI(api_key=API_KEY)
 modelo = "gpt-4"
 
 def categoriza_produto(nome_produto, lista_categorias_possiveis):
